@@ -14239,13 +14239,13 @@ In this cases, it's possible to colve this situation by enlarging the feature sp
 To introduce the non-linearities in SVC, we can use kernels, due to the fact that it's verified the property that:<br><center>
   $K(x_i, x_j) = < x_i, x_j>$ </center><br>
   We can define our linear support vector as:<br><center>
-  $f(x) = \beta_0 + \sum_{i=1}^{p}\alpha_i \cdot < x, x_i> $.</center><br>
-To estimate the weights $\alpha_i$ and the bias term $\beta_0$, we need of all inner products between all pairs of training set.<br>
-Then, there will be $\alpha_i$ estimated, equal to 0. This means that, the only data that will matter, are the ones with $\alpha_i &gt; 0$. They are the <em>support vectors</em>, in the sense that they "support" our classification, while all the others are useless.
+  $f(x) = \beta_0 + \sum_{i=1}^{p}\beta_i \cdot < x, x_i> $.</center><br>
+To estimate the weights $\beta_i$ and the bias term $\beta_0$, we need of all inner products between all pairs of training set.<br>
+Then, there will be $\beta_i$ estimated, equal to 0. This means that, the only data that will matter, are the ones with $\beta_i &gt; 0$. They are the <em>support vectors</em>, in the sense that they "support" our classification, while all the others are useless.
 Overall, if we can compute the inner products between all observations, we can fit the SVC, by means of kernel functions, that perform the inner product in different dimensional spaces.<br>
 The decision function becomes:<br><center>
-  $f(x) = \beta_0 + \sum_{i \in S}\alpha_i \cdot K(x,x_i)$</center><br>
-Note that the summation now is for $i \in S$ to consider only the support vector, S is the set of cases where $\alpha_i &gt; 0$.
+  $f(x) = \beta_0 + \sum_{i \in S}\beta_i \cdot K(x,x_i)$</center><br>
+Note that the summation now is for $i \in S$ to consider only the support vector, S is the set of cases where $\beta_i &gt; 0$.
 Examples of kernel function:</p>
 <ul>
 <li>Polynomial: $k(x_i,x_j) = (1 + \sum_{k=1}^{p}x_{ik} \cdot x_{jk})^2$</li>
@@ -15017,7 +15017,6 @@ weighted avg       0.66      0.66      0.66      6764
 <span class="c1">#print(&quot;Number of labels:\n%s&quot; % str(y_class.value_counts()))</span>
 
 <span class="c1"># Perform the random forest algorithm with dummy variables</span>
-<span class="c1"># max depth 5, number of estimators 10 and max features 1.</span>
 <span class="n">accuracies</span><span class="p">[</span><span class="s2">&quot;RandomForest&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">my_randomForest</span><span class="p">(</span><span class="n">dummy_class</span><span class="p">,</span> <span class="n">y_class</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
@@ -15104,7 +15103,6 @@ weighted avg       0.80      0.80      0.80      6764
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Perform the random forest algorithm with the principal components</span>
-<span class="c1"># max depth 5, number of estimators 10 and max features 1.</span>
 <span class="n">accuracies</span><span class="p">[</span><span class="s2">&quot;RandomForest_PCA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">my_randomForest</span><span class="p">(</span><span class="n">x_class_pca</span><span class="p">,</span> <span class="n">y_class</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 </pre></div>
 
